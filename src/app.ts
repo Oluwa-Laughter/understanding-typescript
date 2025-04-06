@@ -1,57 +1,18 @@
-// const userName = "Isaac";
-// let age = 50;
+class Department {
+  constructor(n: string) {
+    this.name = n;
+  }
 
-// age = 25;
+  name: string;
 
-// function add(a: number, b: number) {
-//   var result;
-//   result = a + b;
-
-//   return result;
-// }
-
-// console.log(result);
-
-// if (age > 20) {
-//   let isOld = true;
-// }
-
-// console.log(isOld);
-
-const add2 = (a: number, b: number = 2) => a + b;
-
-const printOutput: (a: string | number) => void = (output) =>
-  console.log(output);
-
-const btn = document.querySelector("button");
-
-if (btn) {
-  btn.addEventListener("click", (event) => console.log(event));
+  describe(this: Department) {
+    console.log(` ${this.name}`);
+  }
 }
 
-printOutput(add2(4));
+const accounting = new Department("Accounting");
 
-const hobbies = ["Sport", "cooking"];
-const activeHobbies = ["Hiking"];
+accounting.describe();
 
-activeHobbies.push(...hobbies);
-
-const person = {
-  firstName: "Isaac",
-  age: 40,
-};
-
-const copiedPerson = { ...person };
-
-const add3 = (...numbers: number[]) => {
-  return numbers.reduce((acc, cur) => acc + cur, 0);
-};
-
-const addedNumbers = add3(6, 6, 3, 6, 8);
-console.log(addedNumbers);
-
-const [hobby1, hobby2, ...remainingHobbies] = hobbies;
-console.log(hobbies, hobby1, hobby2);
-
-const { firstName: userName, age } = person;
-console.log(userName, age);
+const accountingCopy = { name: "Dummy", describe: accounting.describe };
+accountingCopy.describe();
