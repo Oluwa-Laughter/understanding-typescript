@@ -1,11 +1,19 @@
 "use strict";
+var add;
+add = function (n1, n2) { return n1 + n2; };
 var Person = (function () {
     function Person(n) {
         this.age = 44;
-        this.name = n;
+        if (n) {
+            this.name = n;
+        }
     }
     Person.prototype.greet = function (phrase) {
-        console.log("".concat(phrase, " ").concat(this.name));
+        if (this.name) {
+            console.log("".concat(phrase, " ").concat(this.name));
+        }
+        else
+            console.log("Hiii");
     };
     return Person;
 }());
