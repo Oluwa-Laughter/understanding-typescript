@@ -21,4 +21,4 @@ var user1;
 user1 = new Person("Isaac");
 user1.greet("Hi there I'm");
 console.log(user1);
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=interface.js.map

@@ -116,9 +116,10 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "exclude": [
-    "fundamentals",
+    "01-fundamentals",
     "node_modules",
-    "compiler-config",
-    "next-gen-javascript"
+    "02-compiler-config",
+    "03-next-gen-javascript",
+    "04-classes-interface"
   ]
 }
