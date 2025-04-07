@@ -20,6 +20,9 @@ var Department = (function () {
         this.name = name;
         this.employees = [];
     }
+    Department.createEmployee = function (name) {
+        return { name: name };
+    };
     Department.prototype.describe = function () {
         console.log(" ".concat(this.id, " : ").concat(this.name));
     };
@@ -30,6 +33,7 @@ var Department = (function () {
         console.log(this.employees.length);
         console.log(this.employees);
     };
+    Department.fixedYear = 2020;
     return Department;
 }());
 var ITDepartment = (function (_super) {
@@ -46,8 +50,27 @@ var AccountingDepartment = (function (_super) {
     function AccountingDepartment(id, reports) {
         var _this = _super.call(this, id, "Accounting") || this;
         _this.reports = reports;
+        _this.lastReport = reports[0];
         return _this;
     }
+    Object.defineProperty(AccountingDepartment.prototype, "mostRecentReport", {
+        get: function () {
+            if (this.lastReport)
+                return this.lastReport;
+            throw new Error("No report found");
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(AccountingDepartment.prototype, "setMostRecentReport", {
+        set: function (value) {
+            if (!value)
+                throw new Error("Pass in a valid vlaue");
+            this.addReports(value);
+        },
+        enumerable: false,
+        configurable: true
+    });
     AccountingDepartment.prototype.addEmployee = function (employee) {
         if (employee === "Isaac")
             return;
@@ -55,12 +78,15 @@ var AccountingDepartment = (function (_super) {
     };
     AccountingDepartment.prototype.addReports = function (text) {
         this.reports.push(text);
+        this.lastReport = text;
     };
     AccountingDepartment.prototype.printReports = function () {
         console.log(this.reports);
     };
     return AccountingDepartment;
 }(Department));
+var employee1 = Department.createEmployee("Isaac");
+console.log(employee1, Department.fixedYear);
 var it = new ITDepartment("52tw", ["Isaac"]);
 it.addEmployee("Isaac");
 it.addEmployee("Idan");
@@ -68,10 +94,12 @@ it.describe();
 it.printEmployeeInfo();
 console.log(it);
 var accounting = new AccountingDepartment("acc", []);
+accounting.setMostRecentReport = "End of the day Reports";
 accounting.addEmployee("Laughter");
 accounting.addEmployee("Isaac");
 accounting.printEmployeeInfo();
 accounting.addReports("Money deposited");
 accounting.printReports();
+console.log(accounting.mostRecentReport);
 console.log(accounting);
 //# sourceMappingURL=app.js.map
