@@ -1,11 +1,11 @@
-class Department {
+abstract class Department {
   static fixedYear = 2020;
   // private readonly id: string;
   // private name: string;
   // private employees: string[] = [];
   protected employees: string[] = [];
 
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     // this.id = id;
     // this.name = name;
   }
@@ -14,9 +14,7 @@ class Department {
     return { name: name };
   }
 
-  describe(this: Department) {
-    console.log(` ${this.id} : ${this.name}`);
-  }
+  abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
     // this.id = 'u72'
@@ -36,10 +34,16 @@ class ITDepartment extends Department {
 
     this.admins = admins;
   }
+
+  describe() {
+    console.log("IT department: " + this.id);
+  }
 }
 
 class AccountingDepartment extends Department {
   private lastReport: string;
+
+  private static instance: AccountingDepartment;
 
   get mostRecentReport() {
     if (this.lastReport) return this.lastReport;
@@ -52,9 +56,22 @@ class AccountingDepartment extends Department {
     this.addReports(value);
   }
 
-  constructor(id: string, private reports: string[]) {
+  private constructor(id: string, private reports: string[]) {
     super(id, "Accounting");
     this.lastReport = reports[0];
+  }
+
+  static getInstance() {
+    if (this.instance) {
+      return this.instance;
+    }
+
+    this.instance = new AccountingDepartment("32", []);
+    return this.instance;
+  }
+
+  describe() {
+    console.log("Accounting Department " + this.id);
   }
 
   addEmployee(employee: string) {
@@ -78,7 +95,7 @@ const employee1 = Department.createEmployee("Isaac");
 
 console.log(employee1, Department.fixedYear);
 
-const it = new ITDepartment("52tw", ["Isaac"]);
+const it = new ITDepartment("it2", ["Isaac"]);
 
 it.addEmployee("Isaac");
 it.addEmployee("Idan");
@@ -88,7 +105,8 @@ it.printEmployeeInfo();
 
 console.log(it);
 
-const accounting = new AccountingDepartment("acc", []);
+// const accounting = new AccountingDepartment("acc", []);
+const accounting = AccountingDepartment.getInstance();
 
 accounting.setMostRecentReport = "End of the day Reports";
 
