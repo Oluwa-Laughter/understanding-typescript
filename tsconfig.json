@@ -120,6 +120,7 @@
     "node_modules",
     "02-compiler-config",
     "03-next-gen-javascript",
-    "04-classes-interface"
+    "04-classes-interface",
+    "05-advanced-types"
   ]
 }

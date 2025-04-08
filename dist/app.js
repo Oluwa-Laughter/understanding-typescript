@@ -1,77 +1,27 @@
 "use strict";
-var _a;
-const el = {
-    name: "Isaac",
-    privileges: ["create-server", "delete-server"],
-    startDate: new Date(),
-};
-function add(a, b) {
-    if (typeof a === "string" || typeof b === "string") {
-        return a.toString() + b.toString();
-    }
-    return a + b;
+const names = [];
+const promise = new Promise((resolve) => {
+    setTimeout(() => {
+        resolve("It worked!");
+    }, 2000);
+});
+promise.then((data) => {
+    data.split(" ");
+});
+function merge(objA, objB) {
+    return Object.assign(objA, objB);
 }
-const result = add("1", 6);
-result.split(" ");
-const fetchedUserData = {
-    id: "e1",
-    name: "Isaac",
-    job: { title: "CTO", descr: "Owner" },
-};
-console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
-const userInput = " ";
-const stored = userInput !== null && userInput !== void 0 ? userInput : "DEFAULT";
-console.log(stored);
-function printEmployeeInfo(emp) {
-    console.log("Name: " + emp.name);
-    if ("privileges" in emp) {
-        console.log("Privileges: " + emp.privileges);
+const mergedObj = merge({ name: "Isaac", hobbies: ["Sports", "Cooking"] }, { age: 50 });
+console.log(mergedObj);
+function countAndDescribe(element) {
+    let descriptionText = "Got no value.";
+    if (element.length === 1) {
+        descriptionText = `Got ${element.length} element.`;
     }
-    if ("startDate" in emp) {
-        console.log("Privileges: " + emp.startDate);
+    else if (element.length > 1) {
+        descriptionText = `Got ${element.length} elements.`;
     }
+    return [element, descriptionText];
 }
-printEmployeeInfo(el);
-class Car {
-    drive() {
-        console.log("Driving...");
-    }
-}
-class Truck {
-    drive() {
-        console.log("Driving...");
-    }
-    loadCargo(amount) {
-        console.log(`Loading Cargo ${amount}`);
-    }
-}
-const v1 = new Car();
-const v2 = new Truck();
-function useVehicle(vehicle) {
-    vehicle.drive();
-    if (vehicle instanceof Truck) {
-        vehicle.loadCargo(1000);
-    }
-}
-useVehicle(v1);
-useVehicle(v2);
-function moveAnimal(animal) {
-    let speed;
-    switch (animal.type) {
-        case "bird":
-            speed = animal.flyingSpeed;
-            break;
-        case "horse":
-            speed = animal.runningSpeed;
-    }
-    console.log("Moving at: " + speed);
-}
-moveAnimal({ type: "bird", flyingSpeed: 2000 });
-const userInputElement = document.getElementById("user-input");
-if (userInputElement) {
-    userInputElement.value = " Hi there";
-}
-const error = {
-    email: "Not Valid",
-};
+console.log(countAndDescribe("Hi there!"));
 //# sourceMappingURL=app.js.map
