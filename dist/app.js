@@ -1,15 +1,27 @@
 "use strict";
+var _a;
 const el = {
     name: "Isaac",
     privileges: ["create-server", "delete-server"],
     startDate: new Date(),
 };
-function add(n1, n2) {
-    if (typeof n1 === "string" || typeof n2 === "string") {
-        return n1.toString() + n2.toString();
+function add(a, b) {
+    if (typeof a === "string" || typeof b === "string") {
+        return a.toString() + b.toString();
     }
-    return n1 + n2;
+    return a + b;
 }
+const result = add("1", 6);
+result.split(" ");
+const fetchedUserData = {
+    id: "e1",
+    name: "Isaac",
+    job: { title: "CTO", descr: "Owner" },
+};
+console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
+const userInput = " ";
+const stored = userInput !== null && userInput !== void 0 ? userInput : "DEFAULT";
+console.log(stored);
 function printEmployeeInfo(emp) {
     console.log("Name: " + emp.name);
     if ("privileges" in emp) {
@@ -59,4 +71,7 @@ const userInputElement = document.getElementById("user-input");
 if (userInputElement) {
     userInputElement.value = " Hi there";
 }
+const error = {
+    email: "Not Valid",
+};
 //# sourceMappingURL=app.js.map

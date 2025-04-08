@@ -23,13 +23,32 @@ type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric;
 
-function add(n1: Combinable, n2: Combinable) {
-  if (typeof n1 === "string" || typeof n2 === "string") {
-    return n1.toString() + n2.toString();
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: string, b: number): string;
+function add(a: number, b: string): string;
+function add(a: Combinable, b: Combinable) {
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
   }
 
-  return n1 + n2;
+  return a + b;
 }
+
+const result = add("1", 6);
+result.split(" ");
+
+const fetchedUserData = {
+  id: "e1",
+  name: "Isaac",
+  job: { title: "CTO", descr: "Owner" },
+};
+
+console.log(fetchedUserData?.job?.title);
+
+const userInput = " ";
+const stored = userInput ?? "DEFAULT";
+console.log(stored);
 
 type UnknownEmployee = Employee | Admin;
 
@@ -120,3 +139,11 @@ const userInputElement = document.getElementById("user-input");
 if (userInputElement) {
   (userInputElement as HTMLInputElement).value = " Hi there";
 }
+
+interface ErrorContainer {
+  [prop: string]: string;
+}
+
+const error: ErrorContainer = {
+  email: "Not Valid",
+};
