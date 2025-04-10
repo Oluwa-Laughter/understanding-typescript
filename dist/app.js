@@ -5,6 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 function Logger(logString) {
     return function (constructor) {
         console.log(logString);
@@ -38,6 +41,24 @@ function Log(target, propertyName) {
     console.log("Property decorator!");
     console.log(target, propertyName);
 }
+function log2(target, name, descriptor) {
+    console.log("Accessor decorator");
+    console.log(target);
+    console.log(name);
+    console.log(descriptor);
+}
+function log3(target, name, descriptor) {
+    console.log("Method decorator");
+    console.log(target);
+    console.log(name);
+    console.log(descriptor);
+}
+function log4(target, name, position) {
+    console.log("Parameter decorator");
+    console.log(target);
+    console.log(name);
+    console.log(position);
+}
 class Product {
     set price(value) {
         if (value > 0) {
@@ -57,4 +78,13 @@ class Product {
 __decorate([
     Log
 ], Product.prototype, "title", void 0);
+__decorate([
+    log2
+], Product.prototype, "price", null);
+__decorate([
+    log3,
+    __param(0, log4)
+], Product.prototype, "getPriceWithTax", null);
+const p1 = new Product("Book", 19);
+const p2 = new Product("Book 2", 29);
 //# sourceMappingURL=app.js.map
