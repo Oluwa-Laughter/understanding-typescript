@@ -122,6 +122,7 @@
     "03-next-gen-javascript",
     "04-classes-interface",
     "05-advanced-types",
-    "06-generics"
+    "06-generics",
+    "07-decorators"
   ]
 }
