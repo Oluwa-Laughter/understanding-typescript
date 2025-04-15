@@ -123,6 +123,8 @@
     "04-classes-interface",
     "05-advanced-types",
     "06-generics",
-    "07-decorators"
+    "07-decorators",
+    "08-drag-n-drop",
+    "09-3rd-part-lib"
   ]
 }
